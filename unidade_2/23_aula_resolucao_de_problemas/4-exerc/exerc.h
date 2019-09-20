@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 typedef struct{
   char registry[20];
   char name[50];
@@ -49,4 +51,33 @@ int findHighestAverage(Student student[5]) {
   }
 
   return index;
+}
+
+
+int findLowestAverage(Student student[5]) {
+  int index = 0;
+  float highestAverage = student[index].p1 +
+                         student[index].p2 +
+                         student[index].p3;
+
+  for(int i = 1; i < 5; i++) {
+    float studentAverage = student[i].p1 +
+                           student[i].p2 +
+                           student[i].p3;
+
+    if(highestAverage > studentAverage) {
+      index = i;
+      highestAverage = studentAverage;
+    }
+  }
+
+  return index;
+}
+
+void printStudentResults(Student student[5]) {
+  for(int i = 0; i < 5; i++) {
+    float media = (student[i].p1 + student[i].p2 + student[i].p3) / 3.0;
+
+    printf("Aluno %d: %s", i+1, media >=6 ? "aprovado" : "reprovado");
+  }
 }
